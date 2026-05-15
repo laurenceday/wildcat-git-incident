@@ -190,14 +190,6 @@ cab0e9f851de02a486e6213b5dda2c2008bafb89
 b4494487236760311c5eb9545bf0db0ab246bb6a
 ```
 
-Rejected but still useful for hunting in object databases:
-
-```text
-7628c1ee4a23529d6cba5554e39f8c8b88275de1
-cbf07fcfa441ef9b9d9eeff83633cde96477c4f1
-128d7deb031daae93c739412810a0e42f8f2d4de
-```
-
 Quick check inside local clones:
 
 ```bash
@@ -219,8 +211,6 @@ global['_V']='5-3-332'
 oWN(5586)
 eval("global['_V']='5-3-332';"+atob(
 createRequire(import.meta.url)
-child_process
-spawn("node",["-e",
 ```
 
 Recommended search:
