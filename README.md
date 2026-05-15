@@ -73,7 +73,7 @@ Of the affected repos, the two public ones are:
 - `wildcat-finance/v2-protocol`
 - `wildcat-finance/subgraph`
 
-We don't believe that anyone outside of Wildcat had pulled either of the compromised repositories in this timeframe based on the traffic stats we can see (although those stats are not very detailed), but if you pulled `wildcat-finance/v2-protocol` or `wildcat-finance/subgraph` after 2026-04-27, you should act as if your system and all credentials on it are potentially compromised to be safe.
+We don't believe that anyone outside of Wildcat had pulled either of the compromised repositories in this timeframe based on the traffic stats we can see (although those stats are not very detailed), but if you pulled `wildcat-finance/v2-protocol` or `wildcat-finance/subgraph` after 2026-04-27 and think you may have run the RCE path (see below), you should act as if your system and all credentials on it are potentially compromised to be safe.
 
 Of the compromised repositories, the two public ones were among the least likely to infect a typical developer due to the unique circumstances required to trigger the malware.
 
