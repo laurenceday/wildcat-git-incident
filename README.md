@@ -99,7 +99,7 @@ We hadn't enabled some GitHub security features we should have:
 - Force-pushes weren't disabled on all main branches, and
 - We had no Enterprise plan, so our audit logs were fairly limited and we needed to use the GitHub API directly to retrieve historical events.
 
-Even with the changes that should prevent similar force-push issues, going forward we are now using a git hook that surfaces any history overwrites more visibly (with block-by-default), but still keeps the experience for normal merging painless.
+Even with the changes that should prevent similar force-push issues, going forward we are now using a git hook (`./reference-transaction`) that surfaces any history overwrites more visibly (with block-by-default), but still keeps the experience for normal merging painless.
 
 ### Positive Takeaways
 
