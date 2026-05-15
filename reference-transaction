@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# TO CONFIGURE:
+# mkdir -p ~/.git-hooks
+# put the script at ~/.git-hooks/reference-transaction
+# chmod +x ~/.git-hooks/reference-transaction
+# git config --global core.hooksPath ~/.git-hooks
+
+state="$1"
+[ "$state" = "prepared" ] || exit 0
+
+if [ "$GIT_ALLOW_REWRITE" = "1" ]; then
+  echo "(rewrite check bypassed via GIT_ALLOW_REWRITE=1)" >&2
+  exit 0
+fi
+
+while read -r old new ref; do
+  case "$new" in *[!0]*) ;; *) continue ;; esac
+  case "$old" in *[!0]*) ;; *) continue ;; esac
+
+  case "$ref" in
+    refs/remotes/*/*|refs/tags/*)
+      if git merge-base --is-ancestor "$old" "$new" 2>/dev/null; then
+        continue
+      fi
+      echo "" >&2
+      echo "WARNING: non-fast-forward update to $ref" >&2
+      echo "  was: $old" >&2
+      echo "  now: $new" >&2
+      echo "" >&2
+      echo "  Commits the remote DROPPED (no longer reachable from new tip):" >&2
+      git log --oneline -n 20 "$new..$old" 2>/dev/null | sed 's/^/    /' >&2
+      echo "" >&2
+      echo "  Commits the remote ADDED (only on new tip):" >&2
+      git log --oneline -n 20 "$old..$new" 2>/dev/null | sed 's/^/    /' >&2
+      echo "" >&2
+      echo "  Run with GIT_ALLOW_REWRITE=1 to accept this rewrite." >&2
+      exit 1
+      ;;
+  esac
+done
+exit 0
