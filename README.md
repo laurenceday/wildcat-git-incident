@@ -216,7 +216,7 @@ createRequire(import.meta.url)
 Recommended search:
 
 ```bash
-rg -n -S -F -e '5-3-332' -e 'oWN(5586)' -e 'eval("global['\''_V'\'']' -e 'createRequire(import.meta.url)' -e 'spawn(' ~/code
+rg -n -S '5-3-332|oWN\(5586\)|eval\('\''global\['\''_V'\''\]|createRequire\(import\.meta\.url\)|spawn\("' .
 ```
 
 `createRequire(import.meta.url)` by itself is not malicious. It should be treated as suspicious only when correlated with one of the stronger markers above.
